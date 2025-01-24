@@ -1,5 +1,6 @@
 import { type Metadata } from "next";
 import { type ReactNode } from "react";
+
 import { Inter } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
