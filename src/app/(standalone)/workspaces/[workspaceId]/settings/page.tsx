@@ -5,14 +5,13 @@ import { getWorkspace } from "@/features/workspaces/actions";
 import { EditWorkspaceForm } from "@/features/workspaces/components/edit-workspace-form";
 
 interface WorksapceIdSettingsPageProps {
-    params: {
+    params: Promise<{
         workspaceId: string;
-    };
+    }>;
 };
 
-const WorkspaceIdSettingsPage = async ({
-    params,
-}: WorksapceIdSettingsPageProps) => {
+const WorkspaceIdSettingsPage = async (props: WorksapceIdSettingsPageProps) => {
+    const params = await props.params;
     const user = await getCurrent();
 
     if (!user) redirect("/sign-in");
