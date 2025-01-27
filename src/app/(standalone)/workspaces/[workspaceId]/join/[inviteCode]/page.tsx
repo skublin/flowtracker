@@ -5,16 +5,15 @@ import { getWorkspaceInfo } from "@/features/workspaces/queries";
 import { JoinWorkspaceForm } from "@/features/workspaces/components/join-workspace-form";
 
 interface WorkspaceIdJoinPageProps {
-    params: {
+    params: Promise<{
         workspaceId: string;
-    };
+    }>;
 };
 
-const WorkspaceIdJoinPage = async ({
-    params,
-}: WorkspaceIdJoinPageProps) => {
+const WorkspaceIdJoinPage = async (props: WorkspaceIdJoinPageProps) => {
+    const params = await props.params;
     const user = await getCurrent();
-    
+
     if (!user) redirect("/sign-in");
 
     const initialValues = await getWorkspaceInfo({
