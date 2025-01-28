@@ -35,8 +35,6 @@ interface EditProjectFormProps {
     initialValues: Project;
 };
 
-// TODO: after submit changes in project settings the name doesn't change
-
 export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProps) => {
     const router = useRouter();
     
@@ -88,7 +86,7 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
             param: { projectId: initialValues.$id }
         }, {
             onSuccess: () => {
-                form.reset();
+                form.reset(finalValues); // TODO: in case of problem with input changes try to use useEffect()
             },
         });
     };
