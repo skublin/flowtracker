@@ -5,14 +5,13 @@ import { getProject } from "@/features/projects/queries";
 import { EditProjectForm } from "@/features/projects/components/edit-project-form";
 
 interface ProjectIdSettingsPageProps {
-    params: {
+    params: Promise<{
         projectId: string,
-    };
+    }>;
 };
 
-const ProjectIdSettingsPage = async ({
-    params,
-}: ProjectIdSettingsPageProps) => {
+const ProjectIdSettingsPage = async (props: ProjectIdSettingsPageProps) => {
+    const params = await props.params;
     const user = await getCurrent();
 
     if (!user) redirect("/sign-in");
