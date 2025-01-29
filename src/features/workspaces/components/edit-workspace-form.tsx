@@ -109,7 +109,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
             param: { workspaceId: initialValues.$id }
         }, {
             onSuccess: () => {
-                form.reset(finalValues); // TODO: in case of problem with input changes try to use useEffect()
+                form.reset(finalValues); // TODO: in case of problem with input changes try to use useEffect() or onCancel?.();
             },
         });
     };
