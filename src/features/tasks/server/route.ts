@@ -26,7 +26,7 @@ const app = new Hono()
                 status: z.nativeEnum(TaskStatus).nullish(),
                 search: z.string().nullish(),
                 dueDate: z.string().nullish(),
-            })
+            }),
         ),
         async (c) => {
             const { users } = await createAdminClient();
@@ -111,7 +111,7 @@ const app = new Hono()
                         ...member,
                         name: user.name,
                         email: user.email,
-                    };8
+                    };
                 })
             );
 
