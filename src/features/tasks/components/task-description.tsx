@@ -24,6 +24,10 @@ export const TaskDescription  = ({
         mutate({
             json: { description: value },
             param: { taskId: task.$id }
+        }, {
+            onSuccess: () => {
+                setIsEditing(false);
+            }
         });
     };
 
@@ -43,7 +47,6 @@ export const TaskDescription  = ({
             <DottedSeparator className="my-4" />
             {isEditing ? (
                 <div className="flex flex-col gap-y-4">
-                    {/* TODO: quit editing not working. */}
                     <Textarea
                         placeholder="Add a description..."
                         value={value}
