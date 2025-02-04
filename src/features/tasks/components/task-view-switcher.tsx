@@ -68,7 +68,7 @@ export const TaskViewSwitcher = ({
             json: { tasks },
         });
     }, [bulkUpdate]);
-    
+    // TODO: Table (as well as Kanban and Calendar) should show tasks only for selected project!
     return (
         <Tabs 
             defaultValue={view}

@@ -51,7 +51,7 @@ export function DataTable<TData, TValue>({
             columnFilters,
         },
     });
-
+    // TODO: Table (as well as Kanban and Calendar) should show tasks only for selected project!
     return (
         <div>
             <div className="rounded-md border">
