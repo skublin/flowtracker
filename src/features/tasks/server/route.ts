@@ -120,7 +120,7 @@ const app = new Hono()
                 TASKS_ID,
                 query,
             );
-8
+
             const projectIds = tasks.documents.map((task) => task.projectId);
             const assigneeIds = tasks.documents.map((task) => task.assigneeId);
 
@@ -370,8 +370,7 @@ const app = new Hono()
 
             const workspaceId = workspaceIds.values().next().value;
 
-            // TODO: better solution to the problem?
-            if (!workspaceId) return c.json({ error: "Cannot find workspaceId" });
+            if (!workspaceId) return c.json({ error: "workspaceId is required." }, 400);
 
             const member = await getMember({
                 databases,

@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import { useQueryState } from "nuqs";
 import { Loader, PlusIcon } from "lucide-react";
 
+import { useProjectId } from "@/features/projects/hooks/use-project-id";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { useCreateTaskModal } from "@/features/tasks/hooks/use-create-task-modal";
 
@@ -45,7 +46,9 @@ export const TaskViewSwitcher = ({
     const [view, setView] = useQueryState("task-view", {
         defaultValue: "table",
     });
+
     const workspaceId = useWorkspaceId();
+    const paramProjectId = useProjectId();
     const { open } = useCreateTaskModal();
 
     const { mutate: bulkUpdate } = useBulkUpdateTasks();
@@ -55,7 +58,7 @@ export const TaskViewSwitcher = ({
         isLoading: isLoadingTasks,
     } = useGetTasks({
         workspaceId,
-        projectId,
+        projectId: paramProjectId || projectId,
         assigneeId,
         status,
         dueDate,
@@ -68,7 +71,7 @@ export const TaskViewSwitcher = ({
             json: { tasks },
         });
     }, [bulkUpdate]);
-    // TODO: Table (as well as Kanban and Calendar) should show tasks only for selected project!
+    
     return (
         <Tabs 
             defaultValue={view}
